@@ -41,7 +41,7 @@ func rsort2a(lns lines, recix int) {
 			continue
 		}
 
-		// aooend offset in line to the pile indexed by c
+		// aooend line to the pile indexed by c
 		c := int(l[recix])
 		piles[c] = append(piles[c], line(l))
 		if len(piles[c]) == 1 {
@@ -49,15 +49,11 @@ func rsort2a(lns lines, recix int) {
 		}
 	}
 
-	// no lns with offset ix
-	if nc == 0 {
-		return // if no piles, done
-	}
-
 	for _, p := range piles {
 		if len(p) == 0 {
 			continue
 		}
+		// sort pile
 		rsort2a(p, recix+1)
 		nc--
 		if nc == 0 {
