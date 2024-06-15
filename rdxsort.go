@@ -35,9 +35,8 @@ func rsort2a(lns lines, recix int) {
 		return
 	}
 
-	for i := range lns {
+	for _, l := range lns {
 
-		l := lns[i]
 		if recix >= len(l) {
 			continue
 		}
@@ -55,23 +54,23 @@ func rsort2a(lns lines, recix int) {
 		return // if no piles, done
 	}
 
-	for i := range piles {
-		if len(piles[i]) == 0 {
+	for _, p := range piles {
+		if len(p) == 0 {
 			continue
 		}
-		rsort2a(piles[i], recix+1)
+		rsort2a(p, recix+1)
 		nc--
 		if nc == 0 {
 			break
 		}
 	}
 	clear(lns)
-	for i := range piles {
-		if len(piles[i]) == 0 {
+	for _, p := range piles {
+		if len(p) == 0 {
 			continue
 		}
-		for j := range piles[i] {
-			lns = append(lns, line(piles[i][j]))
+		for _, l := range p {
+			lns = append(lns, l)
 		}
 	}
 }
