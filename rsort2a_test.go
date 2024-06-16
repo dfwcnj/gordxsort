@@ -10,7 +10,7 @@ func Test_rsort2a(t *testing.T) {
 
 	var lns lines
 	var l uint = 32
-	ls := []uint{1, 2, 16, 128, 65536}
+	ls := []uint{1, 2, 16, 128, 65536, 1 << 20}
 
 	for _, i := range ls {
 
