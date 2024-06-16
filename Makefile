@@ -7,11 +7,15 @@ fmt:
 	go fmt rdxsort.go
 
 vet: fmt
-	go vet main.go rdxsort.go
+	go vet main.go
+	go vet rdxsort.go
 
 build: vet
-	go build -o rdxsort main.go rdxsort.go
+	go build -o rdxsort main.go
 
-clean: rdxsort
-	/bin/rm rdxsort
+test:
+	go test
+
+clean:
+	/bin/rm -f rdxsort
 
