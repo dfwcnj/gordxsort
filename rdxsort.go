@@ -10,18 +10,10 @@ func simplesort(lns lines) {
 	if n == 1 {
 		return
 	}
-	var j int
-	for i := 1; i < n; i++ {
-		l := lns[i]
-		for j = i - 1; j >= 0; j-- {
-			// make room
-			if string(lns[j]) > string(l) {
-				lns[j+1] = lns[j]
-			} else {
-				break
-			}
+	for i := 0; i < len(lns); i++ {
+		for j := i; j > 0 && string(lns[j-1]) > string(lns[j]); j-- {
+			lns[j], lns[j-1] = lns[j-1], lns[j]
 		}
-		lns[j+1] = l
 	}
 }
 
@@ -30,6 +22,9 @@ func rsort2a(lns lines, recix int) {
 	var piles = make([][]line, 256)
 	var nc int
 
+	if len(lns) == 0 {
+		return
+	}
 	if len(lns) < THRESHOLD {
 		simplesort(lns)
 		return

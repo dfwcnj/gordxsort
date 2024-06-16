@@ -1,7 +1,3 @@
-// https://www.cs.princeton.edu/courses/archive/spr09/cos226/handouts/Algs3Ch10.pdf
-// http://akira.ruc.dk/~keld/teaching/algoritmedesign_f08/Artikler/04/Andersson98.pdf
-// https://www.usenix.org/legacy/publications/compsystems/1993/win_mcilroy.pdf
-
 package gocrdxsort
 
 import (
