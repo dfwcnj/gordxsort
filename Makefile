@@ -19,6 +19,6 @@ test:
 	go test
 
 clean:
-	/bin/rm -f rdxsort gocrdxsort.test
+	/bin/rm -f rdxsort gordxsort.test
 	/bin/rm -f cpu.prof mem.prof profile001.callgraph.out
 
