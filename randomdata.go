@@ -1,4 +1,4 @@
-package gocrdxsort
+package main
 
 import (
 	"fmt"

@@ -1,43 +1,44 @@
-package gocrdxsort
+package main
 
 import (
-	//	"bytes"
-	"errors"
+	"bufio"
 	"flag"
 	"fmt"
-	"io"
 	"log"
 	"os"
-	// "strings"
 )
+
+type line []byte
+type lines []line
 
 func main() {
 	var fn string
 	flag.StringVar(&fn, "file", "", "name of file to sort")
 	flag.Parse()
+	var lns lines
 
-	var fp = os.Stdin
 	var err error
-	const bsz int64 = 1 << 20
-	var ba [bsz]byte
-	var buf []byte = ba[0:]
-	var offset int64
 
+	fp := os.Stdin
 	if fn != "" {
 		fp, err = os.Open(fn)
 		if err != nil {
 			log.Fatal(err)
 		}
+		defer fp.Close()
 	}
 
-	for {
-		n, err := fp.ReadAt(buf, offset)
-		if n == 0 {
-			if !errors.Is(err, io.EOF) {
-				fmt.Println("ReadAt", offset, n, err)
-			}
-		}
-		offset = offset + int64(n)
-
+	scanner := bufio.NewScanner(fp)
+	// option, resize scanner's capacity for lines over 64K, see next example
+	for scanner.Scan() {
+		//fmt.Println(scanner.Text())
+		l := scanner.Text()
+		bln := []byte(l)
+		lns = append(lns, bln)
 	}
+	rsort2a(lns, 0)
+	for _, l := range lns {
+		fmt.Print(string(l))
+	}
+
 }

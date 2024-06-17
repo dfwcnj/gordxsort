@@ -1,4 +1,4 @@
-package gocrdxsort
+package main
 
 import (
 	"log"
@@ -10,7 +10,7 @@ func Test_rsort2a(t *testing.T) {
 
 	var lns lines
 	var l uint = 32
-	ls := []uint{1, 2, 16, 128, 65536, 1 << 20}
+	ls := []uint{1, 2, 1<<4, 1<<8, 1<<16, 1<<20, 1<<24}
 
 	for _, i := range ls {
 

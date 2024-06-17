@@ -4,14 +4,13 @@
 
 fmt:
 	go fmt main.go
-	go fmt rdxsort.go
+	go fmt rsort2a.go
 
 vet: fmt
-	go vet main.go
-	go vet rdxsort.go
+	go vet main.go rsort2a.go
 
 build: vet
-	go build -o rdxsort main.go
+	go build -o rdxsort main.go rsort2a.go
 
 test:
 	go test
