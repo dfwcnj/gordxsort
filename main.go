@@ -36,9 +36,9 @@ func main() {
 		bln := []byte(l)
 		lns = append(lns, bln)
 	}
-	rsort2a(lns, 0)
-	for _, l := range lns {
-		fmt.Print(string(l))
+	slns := rsort2a(lns, 0)
+	for i, _ := range slns {
+		fmt.Println(string(slns[i]))
 	}
 
 }
