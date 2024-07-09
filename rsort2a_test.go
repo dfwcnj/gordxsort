@@ -1,10 +1,31 @@
 package main
 
 import (
+	"fmt"
 	"log"
-	"sort"
+	"slices"
 	"testing"
+	"time"
 )
+
+func timer(name string) func() {
+	start := time.Now()
+	return func() {
+		fmt.Printf("%s took %v\n", name, time.Since(start))
+	}
+}
+
+func timemyradixsort(lns lines) {
+	a := fmt.Sprintf("rsort2a %d", len(lns))
+	defer timer(a)()
+	rsort2a(lns, 0)
+}
+
+func timeslicessort(lns []string) {
+	a := fmt.Sprintf("slices sort  %d", len(lns))
+	defer timer(a)()
+	slices.Sort(lns)
+}
 
 func Test_rsort2a(t *testing.T) {
 
@@ -42,10 +63,14 @@ func Test_rsort2a(t *testing.T) {
 			//log.Print(ssl)
 			log.Fatal("rsort2a test ssl: wanted len ", nl, " got ", len(ssl))
 		}
-		if !sort.StringsAreSorted(ssl) {
+		//if !sort.StringsAreSorted(ssl) {
+		if !slices.IsSorted(ssl) {
 			log.Fatal("rsort2a failed for size ", nl)
 		} else {
 			log.Print("sort test passed for ", nl)
 		}
+
+		timemyradixsort(lns)
+		timeslicessort(rsl)
 	}
 }
