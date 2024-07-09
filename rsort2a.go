@@ -7,8 +7,8 @@ import (
 
 const THRESHOLD int = 1 << 5
 
-//type line []byte
-//type lines []line
+type line []byte
+type lines []line
 
 func binsertionsort(lns lines) lines {
 	n := len(lns)
@@ -56,6 +56,9 @@ func rsort2a(lns lines, recix int) lines {
 		piles[0] = binsertionsort(piles[0])
 	}
 	if nc == 1 {
+		if len(piles[0]) > 1 {
+			return piles[0]
+		}
 		return binsertionsort(lns)
 	}
 

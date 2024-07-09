@@ -8,8 +8,8 @@ import (
 	"os"
 )
 
-type line []byte
-type lines []line
+//type line []byte
+//type lines []line
 
 func main() {
 	var fn string
