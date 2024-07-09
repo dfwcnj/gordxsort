@@ -16,13 +16,13 @@ func timer(name string) func() {
 }
 
 func timemyradixsort(lns lines) {
-	a := fmt.Sprintf("rsort2a %d", len(lns))
+	a := fmt.Sprintf("rsort2a     %d", len(lns))
 	defer timer(a)()
 	rsort2a(lns, 0)
 }
 
 func timeslicessort(lns []string) {
-	a := fmt.Sprintf("slices sort  %d", len(lns))
+	a := fmt.Sprintf("slices sort %d", len(lns))
 	defer timer(a)()
 	slices.Sort(lns)
 }

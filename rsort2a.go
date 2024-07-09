@@ -52,13 +52,7 @@ func rsort2a(lns lines, recix int) lines {
 			nc++ // number of piles so far
 		}
 	}
-	if len(piles[0]) > 1 {
-		piles[0] = binsertionsort(piles[0])
-	}
 	if nc == 1 {
-		if len(piles[0]) > 1 {
-			return piles[0]
-		}
 		return binsertionsort(lns)
 	}
 
