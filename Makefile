@@ -3,14 +3,13 @@
 .PHONY:fmt vet build
 
 fmt:
-	go fmt main.go
-	go fmt rsort2a.go
+	go fmt *.go
 
 vet: fmt
-	go vet main.go rsort2a.go
+	go vet *.go
 
 build: vet
-	go build -o rdxsort main.go rsort2a.go
+	go build -o rdxsort *.go
 
 profile:
 	go test -cpuprofile cpu.prof -memprofile mem.prof -bench .
