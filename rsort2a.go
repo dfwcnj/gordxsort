@@ -36,6 +36,7 @@ func rsort2a(lns lines, recix int) lines {
 		return binsertionsort(lns)
 	}
 
+	// deal lines into piles
 	for i, _ := range lns {
 		var c int
 
@@ -52,10 +53,11 @@ func rsort2a(lns lines, recix int) lines {
 			nc++ // number of piles so far
 		}
 	}
+
+	// sort the piles
 	if nc == 1 {
 		return binsertionsort(lns)
 	}
-
 	for i, _ := range piles {
 		if len(piles[i]) == 0 {
 			continue
@@ -72,6 +74,8 @@ func rsort2a(lns lines, recix int) lines {
 			break
 		}
 	}
+
+	// combine the sorted piles
 	var slns lines
 	for i, _ := range piles {
 		for j, _ := range piles[i] {
