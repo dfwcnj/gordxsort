@@ -31,7 +31,7 @@ func Test_rsort2a(t *testing.T) {
 
 	var l int = 32
 	var r bool = true
-	ls := []int{1, 2, 1 << 4, 1 << 8, 1 << 16, 1 << 20, 1 << 24}
+	ls := []int{1, 2, 1 << 4, 1 << 8, 1 << 16, 1 << 25}
 
 	for _, nl := range ls {
 
