@@ -4,6 +4,7 @@ package main
 //package goranddatagen
 
 import (
+	"encoding/binary"
 	"fmt"
 	"math/rand"
 	"time"
@@ -42,17 +43,26 @@ func randomstrings(n int, slen int, rlen bool) []string {
 // randomints(ņ int)
 // generate n random int64 values
 // return a slice containing the int64 values
-func randomuints(n int, rlen bool) []uint64 {
+func randomuintb(n int) lines {
+	rubsl := make(lines, 0)
+	for _ = range n {
+		//fmt.Println(rand.Uint64())
+		ru := rand.Uint64()
+		rub := make(line, 8)
+		binary.LittleEndian.PutUint64(rub, ru)
+		rubsl = append(rubsl, rub)
+	}
+	return rubsl
+}
+
+// randomints(ņ int)
+// generate n random int64 values
+// return a slice containing the int64 values
+func randomuints(n int) []uint64 {
 	usl := make([]uint64, 0)
 	for _ = range n {
-		fmt.Println(rand.Uint64())
+		//fmt.Println(rand.Uint64())
 		usl = append(usl, rand.Uint64())
-	}
-	if rlen == true {
-		rl := rand.Intn(n)
-		if rl != 0 {
-			usl = usl[:rl]
-		}
 	}
 	return usl
 }
