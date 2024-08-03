@@ -22,7 +22,7 @@ func binsertionsort(lns lines) lines {
 }
 
 // bostic
-func rsort2a(lns lines, recix int) lines {
+func rsortsl(lns lines, recix int) lines {
 	const THRESHOLD int = 1 << 5
 	var sizes = make([]int, 256)
 	var piles = make([][]line, 256)
@@ -30,7 +30,7 @@ func rsort2a(lns lines, recix int) lines {
 	nl := len(lns)
 
 	if nl == 0 {
-		log.Fatal("rsort2a: 0 len lines: ", recix)
+		log.Fatal("rsortsl: 0 len lines: ", recix)
 	}
 	if nl < THRESHOLD {
 		return binsertionsort(lns)
@@ -40,7 +40,7 @@ func rsort2a(lns lines, recix int) lines {
 	for i, _ := range lns {
 		var c int
 		if len(lns[i]) == 0 {
-			log.Fatal("rsort2a 0 length string")
+			log.Fatal("rsortsl 0 length string")
 		}
 		if recix >= len(lns[i]) {
 			c = 0
@@ -61,7 +61,7 @@ func rsort2a(lns lines, recix int) lines {
 		var c int
 
 		if len(lns[i]) == 0 {
-			log.Fatal("rsort2a 0 length string")
+			log.Fatal("rsortsl 0 length string")
 		}
 		if recix >= len(lns[i]) {
 			c = 0
@@ -87,7 +87,7 @@ func rsort2a(lns lines, recix int) lines {
 		if len(piles[i]) < THRESHOLD {
 			piles[i] = binsertionsort(piles[i])
 		} else {
-			piles[i] = rsort2a(piles[i], recix+1)
+			piles[i] = rsortsl(piles[i], recix+1)
 		}
 		nc--
 		if nc == 0 {
