@@ -5,10 +5,8 @@ import (
 	"log"
 )
 
-const THRESHOLD int = 1 << 5
-
-type line []byte
-type lines []line
+// type line []byte
+// type lines []line
 
 func binsertionsort(lns lines) lines {
 	n := len(lns)
@@ -25,6 +23,8 @@ func binsertionsort(lns lines) lines {
 
 // bostic
 func rsort2a(lns lines, recix int) lines {
+	const THRESHOLD int = 1 << 5
+	var sizes = make([]int, 256)
 	var piles = make([][]line, 256)
 	var nc int
 	nl := len(lns)
@@ -34,6 +34,26 @@ func rsort2a(lns lines, recix int) lines {
 	}
 	if nl < THRESHOLD {
 		return binsertionsort(lns)
+	}
+
+	// count the number of lines that will fall each pile
+	for i, _ := range lns {
+		var c int
+		if len(lns[i]) == 0 {
+			log.Fatal("rsort2a 0 length string")
+		}
+		if recix >= len(lns[i]) {
+			c = 0
+		} else {
+			c = int(lns[i][recix])
+		}
+		sizes[c]++
+	}
+	// preallocate the piles so that they don't have to be resized
+	for i, _ := range sizes {
+		if sizes[i] != 0 {
+			piles[i] = make([]line, 0, sizes[i])
+		}
 	}
 
 	// deal lines into piles
