@@ -64,10 +64,7 @@ func rsortip2(lns lines, recix int) lines {
 			return lns
 		}
 	}
-	// swap ln[i] with current bin contents
-	// update bins[i].end
-	// repeat unto lns[i] is where it should be
-	// log.Print("loop swapping")
+	// compute destination for each line
 	for i, _ := range lns {
 		//log.Print("	looping lns index ", i)
 		var bin int
@@ -83,6 +80,7 @@ func rsortip2(lns lines, recix int) lines {
 		bins[bin].end++
 	}
 
+	// swap lines and moves until the line is in its place
 	for i, _ := range moves {
 		for {
 			if i == moves[i].to {
@@ -93,6 +91,7 @@ func rsortip2(lns lines, recix int) lines {
 		}
 	}
 
+	// recurse
 	for i, _ := range bins {
 		if i == 0 || bins[i].count == 0 {
 			continue
