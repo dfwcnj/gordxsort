@@ -10,15 +10,15 @@ import (
 	"time"
 )
 
-var letters = []rune("abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ")
+var alphanum = []rune("0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz")
 
 // randSeq(n int)
 // generate a random string length n with lower, upper case letters and digits
 func randSeq(n int, rlen bool) string {
 	b := make([]rune, n)
-	ll := len(letters)
+	ll := len(alphanum)
 	for i := range b {
-		b[i] = letters[rand.Intn(ll)]
+		b[i] = alphanum[rand.Intn(ll)]
 	}
 	if rlen == true {
 		rl := rand.Intn(n)

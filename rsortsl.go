@@ -1,25 +1,11 @@
 package main
 
 import (
-	"bytes"
 	"log"
 )
 
 // type line []byte
 // type lines []line
-
-func binsertionsort(lns lines) lines {
-	n := len(lns)
-	if n == 1 {
-		return lns
-	}
-	for i := 0; i < n; i++ {
-		for j := i; j > 0 && bytes.Compare(lns[j-1], lns[j]) > 0; j-- {
-			lns[j], lns[j-1] = lns[j-1], lns[j]
-		}
-	}
-	return lns
-}
 
 // bostic
 func rsortsl(lns lines, recix int) lines {
@@ -33,7 +19,7 @@ func rsortsl(lns lines, recix int) lines {
 		log.Fatal("rsortsl: 0 len lines: ", recix)
 	}
 	if nl < THRESHOLD {
-		return binsertionsort(lns)
+		return inssort(lns)
 	}
 
 	// count the number of lines that will fall each pile
@@ -76,7 +62,7 @@ func rsortsl(lns lines, recix int) lines {
 
 	// sort the piles
 	if nc == 1 {
-		return binsertionsort(lns)
+		return inssort(lns)
 	}
 	for i, _ := range piles {
 		if len(piles[i]) == 0 {
@@ -85,7 +71,7 @@ func rsortsl(lns lines, recix int) lines {
 
 		// sort pile
 		if len(piles[i]) < THRESHOLD {
-			piles[i] = binsertionsort(piles[i])
+			piles[i] = inssort(piles[i])
 		} else {
 			piles[i] = rsortsl(piles[i], recix+1)
 		}
