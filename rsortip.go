@@ -15,7 +15,7 @@ import (
 // Al-Badarneh
 func rsortip(lns lines, recix int) lines {
 	// log.Print("rsortip ", recix)
-	const THRESHOLD int = 1 << 5
+	const THRESHOLD int = 1 << 3
 	if len(lns) <= THRESHOLD {
 		// log.Print("rsortip inssort ix ", recix)
 		return inssort(lns)
