@@ -8,13 +8,13 @@ import (
 	"testing"
 )
 
-func timemyrsortip(lns lines) {
-	a := fmt.Sprintf("rsortip     %d", len(lns))
+func timemyrsortip2(lns lines) {
+	a := fmt.Sprintf("rsortip2     %d", len(lns))
 	defer timer(a)()
-	rsortip(lns, 0)
+	rsortip2(lns, 0)
 }
 
-func Test_rsortip(t *testing.T) {
+func Test_rsortip2(t *testing.T) {
 
 	ls := []int{1 << 5}
 	ns := []int{1 << 3, 1 << 4, 1 << 5, 1 << 6, 1 << 16, 1 << 20, 1 << 24}
@@ -25,10 +25,10 @@ func Test_rsortip(t *testing.T) {
 			var lns lines
 			var l int = ll
 			var r bool = true
-			log.Print("testing rsortip of ", nl, " random strings length ", l)
+			log.Print("testing rsortip2 of ", nl, " random strings length ", l)
 			rsl := randomstrings(nl, l, r)
 			if len(rsl) != int(nl) {
-				log.Fatal("rsortip test rsl: wanted len ", nl, " got ", len(rsl))
+				log.Fatal("rsortip2 test rsl: wanted len ", nl, " got ", len(rsl))
 			}
 			// log.Print("strings generated")
 			for _, s := range rsl {
@@ -37,13 +37,13 @@ func Test_rsortip(t *testing.T) {
 			}
 			if len(lns) != int(nl) {
 				// log.Print(lns)
-				log.Fatal("rsortip test lns: before rsortip wanted len ", nl, " got ", len(lns))
+				log.Fatal("rsortip2 test lns: before rsortip2 wanted len ", nl, " got ", len(lns))
 			}
 			// log.Print("strings converted to bytes")
-			slns := rsortip(lns, 0)
+			slns := rsortip2(lns, 0)
 			if len(slns) != int(nl) {
 				//log.Print(ulns)
-				log.Fatal("rsortip test ulns: after rsortip wanted len ", nl, " got ", len(slns))
+				log.Fatal("rsortip2 test ulns: after rsortip2 wanted len ", nl, " got ", len(slns))
 			}
 			// log.Print("byte strings sorted")
 			var ssl []string
@@ -57,25 +57,25 @@ func Test_rsortip(t *testing.T) {
 					// log.Println(string(slns[i]))
 					log.Println(ssl[i])
 				}
-				log.Fatal("rsortip not sorted for size ", nl)
+				log.Fatal("rsortip2 not sorted for size ", nl)
 			} else {
-				log.Print("rsortip test passed for ", nl)
+				log.Print("rsortip2 test passed for ", nl)
 			}
 
-			log.Print("string rsortip comparison")
-			timemyrsortip(lns)
+			log.Print("string rsortip2 comparison")
+			timemyrsortip2(lns)
 			timeslicessort(rsl)
 
-			log.Print("testing rsortip of ", nl, " random uints")
+			log.Print("testing rsortip2 of ", nl, " random uints")
 			lns = randomuintb(nl)
 			if len(lns) != int(nl) {
-				log.Fatal("rsortip test rui: wanted len ", nl, " got ", len(lns))
+				log.Fatal("rsortip2 test rui: wanted len ", nl, " got ", len(lns))
 			}
 			// log.Print("uint64 byte strings generated")
-			slns = rsortip(lns, 0)
+			slns = rsortip2(lns, 0)
 			if len(slns) != int(nl) {
 				//log.Print(ulns)
-				log.Fatal("rsortip test ulns: after rsortip wanted len ", nl, " got ", len(slns))
+				log.Fatal("rsortip2 test ulns: after rsortip2 wanted len ", nl, " got ", len(slns))
 			}
 			// log.Print("uint64 byte strings sorted")
 			var ulns []uint64
@@ -87,16 +87,16 @@ func Test_rsortip(t *testing.T) {
 
 			if len(ulns) != int(nl) {
 				//log.Print(ssl)
-				log.Fatal("rsortip test ssl: wanted len ", nl, " got ", len(ulns))
+				log.Fatal("rsortip2 test ssl: wanted len ", nl, " got ", len(ulns))
 			}
 			if !slices.IsSorted(ulns) {
-				log.Fatal("rsortip failed for size ", nl)
+				log.Fatal("rsortip2 failed for size ", nl)
 			} else {
-				log.Print("rsortip test passed for ", nl)
+				log.Print("rsortip2 test passed for ", nl)
 			}
 
-			log.Print("uint64 rsortip comparison")
-			timemyrsortip(lns)
+			log.Print("uint64 rsortip2 comparison")
+			timemyrsortip2(lns)
 			timeslicessort(ulns)
 		}
 	}
