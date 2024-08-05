@@ -15,7 +15,7 @@ profile:
 	go test -cpuprofile cpu.prof -memprofile mem.prof -bench .
 
 test:
-	go test
+	go test 2>&1 | tee test.out
 
 clean:
 	/bin/rm -f rdxsort gordxsort.test

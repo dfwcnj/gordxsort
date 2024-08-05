@@ -5,8 +5,6 @@ import (
 )
 
 //https://www.usenix.org/legacy/publications/compsystems/1993/win_mcilroy.pdf
-// https://arxiv.org/pdf/0706.4107
-// https://stackoverflow.com/questions/463105/in-place-radix-sort
 // https://informatica.vu.lt/journal/INFORMATICA/article/953/info
 
 // type line []byte
@@ -44,12 +42,18 @@ func rsortip(lns lines, recix int) lines {
 	// log.Print("computing bin dimensions")
 	var offset int
 	var nc int
+	var fbin int = 512
+	var lbin int
 	for i, _ := range bins {
 		if bins[i].count != 0 {
+			if fbin > i {
+				fbin = i
+			}
 			bins[i].start = offset
 			bins[i].end = offset
 			offset += bins[i].count
 			nc++
+			lbin = i
 		}
 	}
 
@@ -85,7 +89,7 @@ func rsortip(lns lines, recix int) lines {
 		}
 	}
 
-	for i, _ := range bins {
+	for i := fbin; i <= lbin; i++ {
 		if i == 0 || bins[i].count == 0 {
 			continue
 		}
