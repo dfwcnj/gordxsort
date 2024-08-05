@@ -36,7 +36,8 @@ func main() {
 		bln := []byte(l)
 		lns = append(lns, bln)
 	}
-	slns := rsortsl(lns, 0)
+	//slns := rsortsl(lns, 0)
+	slns := rsortip(lns, 0)
 	for i, _ := range slns {
 		fmt.Println(string(slns[i]))
 	}
